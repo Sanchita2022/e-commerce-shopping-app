@@ -1,15 +1,23 @@
 import React from 'react'
+import { useState } from 'react';
+import DataContext from './DataContext';
+import Search from '../routes/Search';
 
 const Navbar = () => {
+  const [keyword, setKeyword] = useState()
   
   function onSearch(e) {
     e.preventDefault();
-    const keyword = e.target.form[0].value;
-    console.log("searching for", keyword)
+    const key = e.target.form[0].value;
+    setKeyword(key)
+    console.log("searching for", key)
   }
 
   return (
     <div>
+         <DataContext.Provider value={setKeyword}>
+     
+          </DataContext.Provider>
         <div className="wrapper">
         <header>
           <div className="two_in_one">

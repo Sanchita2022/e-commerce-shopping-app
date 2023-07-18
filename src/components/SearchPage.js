@@ -1,5 +1,6 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState , useContext} from 'react'
+import DataContext from './DataContext';
 
 async function postApiData(url, postData, auth_token) {
   try {
@@ -54,12 +55,12 @@ async function search(keyword, category = null, min_price = 0, max_price = 1000,
     });
 }
 
-const SearchPage = ({keyword}) => {
-  
-search(keyword)
-.then((results) => {
-  console.log("Results found: ", results);
-  //setSearchResults(results);
+const SearchPage = () => {
+  const data = useContext(DataContext);
+search(data)
+.then((data) => {
+  console.log("data found: ", data);
+  //setSearchdata(data);
 })
 .catch((error) => {
   console.error('Search Error:', error);
@@ -73,10 +74,10 @@ search(keyword)
   const [currentPage, setCurrentPage] = useState(0);
   const [productCount, setProductCount] = useState(100);
   //const [maxPages, setMaxPages] = useState(props.pageList.length);
-  const [currentCategory, setCurrentCategory] = useState(results?results.categories[0]:"All");
-  console.log(results);
+  const [currentCategory, setCurrentCategory] = useState(data?data.categories[0]:"All");
+  // console.log(data);
   // if(currentCategory) {
-  //   for(let category of results.categories){
+  //   for(let category of data.categories){
   //     categories.push(
   //       <option key={category.id}>{category.name}</option>
   //     )
@@ -94,7 +95,7 @@ search(keyword)
   //   }
   // }
 
-  // for((result, pageIndex) of props.searchResults){
+  // for((result, pageIndex) of props.searchdata){
   //   pageList.push(
   //     <li key={pageIndex} className={currentPage==pageIndex?.active}>
   //     {
