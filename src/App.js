@@ -6,11 +6,13 @@ import Login from "./routes/Login";
 import Search from "./routes/Search";
 import EditProfile from "./routes/EditProfile";
 import Signup from "./routes/Signup";
+import SearchPage from "./components/SearchPage";
 
 
 function App() {
   return (
     <div className="App">
+
       <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
