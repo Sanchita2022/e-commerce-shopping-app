@@ -1,74 +1,11 @@
 import React from 'react'
-import { useState } from 'react';
-  
-async function postApiData(url, postData, auth_token) {
-  try {
-    let headers = {
-      "Content-Type": "application/json",
-    };
-    if (auth_token) {
-        headers["Authorization"] = `Bearer ${auth_token}`;
-    }
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(postData),
-    });
-
-    if (!response.ok) {
-      throw new Error(response);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error posting data:", error);
-    return error;
-  }
-}
-
-async function search(keyword, category = null, min_price = 0, max_price = 1000, order = 1) {
-  const search_data_api = "https://phpwebdevelopmentservices.com/project-react-backend/api/common-data";
-  const search_data = {
-    "params": {
-      "cat_slug": category,
-      "sort_by": order,
-      "category_id": 1,
-      "sub_category_id": 1,
-      "keyword": keyword,
-      "price_range": [
-        min_price,
-        max_price
-      ],
-      "offset": 0
-    }
-  }
-
-  return postApiData(search_data_api, search_data)
-    .then((data) => {
-      return data.result;
-    })
-    .catch((error) => {
-      console.error("Search Error:", error);
-    });
-}
-
-
 
 const Navbar = () => {
   
   function onSearch(e) {
     e.preventDefault();
     const keyword = e.target.form[0].value;
-    search(keyword)
-      .then((results) => {
-        console.log("Results found: ", results);
-        //setSearchResults(results);
-      })
-      .catch((error) => {
-        console.error('Search Error:', error);
-      });
+    console.log("searching for", keyword)
   }
 
   return (
