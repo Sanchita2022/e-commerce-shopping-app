@@ -1,21 +1,34 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState , useEffect , useRef } from 'react';
 import DataContext from './DataContext';
-import Search from '../routes/Search';
-
+import {  useNavigate } from 'react-router-dom';
 const Navbar = () => {
-  const [keyword, setKeyword] = useState()
-  
-  function onSearch(e) {
-    e.preventDefault();
-    const key = e.target.form[0].value;
-    setKeyword(key)
-    console.log("searching for", key)
+  const [keyword, setKeyword] = useState();
+  const inputRef = useRef(null);
+  const navigate = useNavigate();
+
+  const searching = (e) => {
+    const value = e.target.form[0].value//inputRef.current.value;
+    
+    setKeyword(value)
+    console.log("searching for", value)
+
+    navigate("/search")
+    
   }
+
+ 
+    // useEffect(() => {
+      
+    //   //searching();
+
+      
+    // }, []);
+  
 
   return (
     <div>
-         <DataContext.Provider value={setKeyword}>
+         <DataContext.Provider value={keyword}>
      
           </DataContext.Provider>
         <div className="wrapper">
@@ -70,10 +83,10 @@ const Navbar = () => {
                           // ki kore ekhan theke nebo value
                         />
                         <button
-                          type="submit"
-                          value=""
+                          type="text"
+                          ref={inputRef}
                           className="search_submit"
-                          onSubmit={onSearch}
+                          onClick={searching}
                         ></button>
                       </form>
                     </div>
