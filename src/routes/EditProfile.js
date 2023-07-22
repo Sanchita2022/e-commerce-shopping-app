@@ -1,10 +1,10 @@
 import React from 'react'
 import Edit_Profile from "../components/Edit_Profile"
 
-const EditProfile = () => {
+const EditProfile = ({AppState}) => {
   return (
     <div>
-      <Edit_Profile/>
+      <Edit_Profile AppState={AppState}/>
     </div>
   )
 }

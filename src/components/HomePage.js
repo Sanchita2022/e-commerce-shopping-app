@@ -5,6 +5,9 @@ import $ from 'jquery';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { DataContext } from "./DataContext";
 
 async function getApiData(url) {
   try {
@@ -24,6 +27,10 @@ async function getApiData(url) {
 
 
 const HomePage = () => {
+
+
+  const value = useContext(DataContext);
+  console.log("value in Home Page", value);
 
   //top slideshow
 	
@@ -79,10 +86,14 @@ const HomePage = () => {
   //               },
   //           }
   //       });
+  const navigate = useNavigate();
+
+  const navigateLogin = () =>{
+    navigate("/login")
+  }
 	
   return (
     <>
-      <Navbar />
 
       {/* <!--banner--> */}
       <section className="banner">
@@ -147,13 +158,15 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      
+      <button onClick={navigateLogin}>
+        Login 
+      </button>
       <div className="wrapper">
  
         {/* <!--ABOUT--> */}
         <div className="about_us_area">
           <div className="container">
-            <div className="row res_padd">
+            <div className="row res_padd">F
               <h1>Welcom To BazarMoynaguri</h1>
               <h2>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -685,8 +698,7 @@ const HomePage = () => {
           </div>
         </div>
         {/* <!--Latest Products--> */}
-       
-        <Footer />
+
       </div>
       {/* <!--wrapper end--> */}
 

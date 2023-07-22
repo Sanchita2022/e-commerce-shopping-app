@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import Home from "./routes/Home";
 import Login from "./routes/Login";
@@ -9,6 +9,13 @@ import Signup from "./routes/Signup";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import DataContextProvider, { DataContext } from "./components/DataContext";
+import HomePage from "./components/HomePage";
+import LoginPage from "./components/LoginPage";
+import SearchPage from "./components/SearchPage";
+import EditProfilePage from "./components/Edit_Profile";
+import SignupPage from "./components/SignupPage";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -20,19 +27,39 @@ function App() {
     [cart, setCart]
   ];
   console.log("Updated AppStates:", AppState);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log("location", location)
+
+
+  useEffect(()=>{
+    if(location.pathname === "/signup")return
+    const token = localStorage.getItem("token");
+    if(!token){
+      navigate("/login")
+    }
+  
+  },[])
 
   return (
     <div className="App">
+
       <Navbar AppState={AppState}></Navbar>
-
+      
+      <DataContextProvider>
       <Routes>
-        <Route path="/" element={<Home AppState={AppState}/>}/>
-        <Route path="/login" element={<Login AppState={AppState}/>}/>
-        <Route path="/signup" element={<Signup AppState={AppState}/>}/>
-        <Route path="/editprofile" element={<EditProfile AppState={AppState}/>}/>
-        <Route path="/search" element={<Search AppState={AppState}/>}/>
+      
+     
+        <Route path="/" element={<HomePage />}/>
+        <Route path="/login" element={<LoginPage />}/>
+        <Route path="/signup" element={<SignupPage />}/>
+        <Route path="/editprofile" element={<EditProfilePage/>}/>
+        <Route path="/search" element={<SearchPage />}/>
+       
       </Routes>
-
+      </DataContextProvider>
+     
       <Footer></Footer>
     </div>
   );

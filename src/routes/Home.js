@@ -1,10 +1,10 @@
 import React from 'react'
 import HomePage from "../components/HomePage"
 
-const Home = () => {
+const Home = ({AppState}) => {
   return (
     <div>
-      <HomePage/>
+      <HomePage AppState={AppState}/>
     </div>
   )
 }

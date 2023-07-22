@@ -3,12 +3,10 @@ import SearchPage from "../components/SearchPage"
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-const Search = () => {
+const Search = ({AppState}) => {
   return (
     <div>
-      <Navbar/>
-      <SearchPage/>
-      <Footer/>
+      <SearchPage AppState={AppState}/>
     </div>
   )
 }

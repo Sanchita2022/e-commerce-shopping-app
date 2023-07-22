@@ -1,37 +1,20 @@
 import React from 'react'
-import { useState , useEffect , useRef } from 'react';
-import DataContext from './DataContext';
-import {  useNavigate } from 'react-router-dom';
-const Navbar = () => {
-  const [keyword, setKeyword] = useState();
-  const inputRef = useRef(null);
+import { useNavigate } from 'react-router-dom';
+
+const Navbar = ({AppState}) => {
+  const [keyword,setKeyword] = AppState[1];
   const navigate = useNavigate();
 
-  const searching = (e) => {
-    const value = e.target.form[0].value//inputRef.current.value;
-    
-    setKeyword(value)
-    console.log("searching for", value)
-
-    navigate("/search")
-    
+  console.log("Updated Navbar");
+  function onSearch(e) {
+    e.preventDefault();
+    setKeyword(e.target.form[0].value);
+    navigate('/search',{AppState});
   }
-
- 
-    // useEffect(() => {
-      
-    //   //searching();
-
-      
-    // }, []);
-  
 
   return (
     <div>
-         <DataContext.Provider value={keyword}>
-     
-          </DataContext.Provider>
-        <div className="wrapper">
+      <div className="wrapper">
         <header>
           <div className="two_in_one">
             <div className="top_head">
@@ -83,10 +66,10 @@ const Navbar = () => {
                           // ki kore ekhan theke nebo value
                         />
                         <button
-                          type="text"
-                          ref={inputRef}
+                          type="submit"
+                          value=""
                           className="search_submit"
-                          onClick={searching}
+                          onClick={onSearch}
                         ></button>
                       </form>
                     </div>
@@ -100,7 +83,7 @@ const Navbar = () => {
                 <div className="container">
                   <div className="row res_padd relet">
                   
-                    {/* <!--CATEGORY MENU-->                 */}
+                    {/* <!--CATEGORY MENU--> */}
                     <div className="adjust_rm01">
                       <div className="off_canvas_animate slide off_canvas_container left_menu_1">
                         <div className="off_canvas_animate slide off_canvas_top_menu">
@@ -124,7 +107,7 @@ const Navbar = () => {
                             <ul>
                               <li>
                                 <a
-                                  href="javascript:void(0);"
+                                  href="#todo"
                                   className="adjust_rm02"
                                 >
                                   All Categories{" "}
@@ -135,7 +118,7 @@ const Navbar = () => {
                                 </a>
                                 <ul>
                                   <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="#todo">
                                       Vegetable{" "}
                                       <i
                                         className="fa fa-angle-right"
@@ -144,52 +127,52 @@ const Navbar = () => {
                                     </a>
                                     <ul>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
@@ -197,7 +180,7 @@ const Navbar = () => {
                                   </li>
 
                                   <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="#todo">
                                       Fruits
                                       <i
                                         className="fa fa-angle-right"
@@ -206,57 +189,57 @@ const Navbar = () => {
                                     </a>
                                     <ul>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
@@ -264,7 +247,7 @@ const Navbar = () => {
                                   </li>
 
                                   <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="#todo">
                                       Dairy products{" "}
                                       <i
                                         className="fa fa-angle-right"
@@ -273,62 +256,62 @@ const Navbar = () => {
                                     </a>
                                     <ul>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
@@ -336,7 +319,7 @@ const Navbar = () => {
                                   </li>
 
                                   <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="#todo">
                                       Organic Products{" "}
                                       <i
                                         className="fa fa-angle-right"
@@ -345,52 +328,52 @@ const Navbar = () => {
                                     </a>
                                     <ul>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
@@ -398,7 +381,7 @@ const Navbar = () => {
                                   </li>
 
                                   <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="#todo">
                                       Grocery Items{" "}
                                       <i
                                         className="fa fa-angle-right"
@@ -407,57 +390,57 @@ const Navbar = () => {
                                     </a>
                                     <ul>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Dummy Sub Category name
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category One
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Abc Sub Category Here
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="javascript:void(0);">
+                                        <a href="#todo">
                                           Sub Category three
                                         </a>
                                       </li>
@@ -556,7 +539,6 @@ const Navbar = () => {
             </div>
           </div>
         </header>
-       
       </div>
     </div>
   )

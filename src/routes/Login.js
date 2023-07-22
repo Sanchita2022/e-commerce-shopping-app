@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import LoginPage from "../components/LoginPage"
+import { DataContext } from '../components/DataContext'
 
-const Login = () => {
+const Login = ({AppState}) => {
+  const value = useContext(DataContext);
+  console.log("value in Login Route", value);
   return (
     <div>
-      <LoginPage/>
+      <LoginPage AppState={AppState}/>
     </div>
   )
 }
